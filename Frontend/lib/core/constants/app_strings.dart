@@ -36,6 +36,9 @@ class AppStrings {
   static const String alreadyHaveAccount = 'Already have an account?';
 
   // --- Auth: registration ---
+  static const String help = 'Help';
+  static const String joinCommunityLabel = 'Join your local food community';
+  static const String grownLocallyLabel = 'Grown by you. Shared locally.';
   static const String shopOwnerRegisterTitle = 'Fresh starts for your shop.';
   static const String shopOwnerRegisterSubtitle =
       'Buy fresh, buy local. Connect directly with farmers near you.';

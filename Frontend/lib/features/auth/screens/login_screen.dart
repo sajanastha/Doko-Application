@@ -4,8 +4,13 @@ import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/app_text_styles.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_textfield.dart';
+import 'role_selection_screen.dart';
 
-
+/// Login screen with a full-bleed photo banner at the top, matching the
+/// reference layout — but using a "Don't have an account? Register"
+/// link at the bottom instead of a Login/Register tab switcher, since
+/// that's a lighter, less committal pattern for someone who's already
+/// decided they're returning (not choosing between two options).
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -136,21 +141,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     // "Don't have an account? Register" — replaces the
                     // tab-switcher pattern from the reference image.
                     Center(
-                      child: RichText(
-                        text: TextSpan(
-                          style: AppTextStyles.bodyMedium,
-                          children: [
-                            const TextSpan(text: "Don't have an account? "),
-                            TextSpan(
-                              text: 'Register',
-                              style: AppTextStyles.bodyMedium.copyWith(
-                                color: AppColors.primaryDark,
-                                fontWeight: FontWeight.w700,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (_) => const RoleSelectionScreen()),
+                          );
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            style: AppTextStyles.bodyMedium,
+                            children: [
+                              const TextSpan(text: "Don't have an account? "),
+                              TextSpan(
+                                text: 'Register',
+                                style: AppTextStyles.bodyMedium.copyWith(
+                                  color: AppColors.primaryDark,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                              // Wrap with a GestureRecognizer (TapGestureRecognizer)
-                              // to navigate to the role-selection/registration screen.
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -164,8 +175,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  /// Full-bleed photo banner with a dark gradient fade at the bottom
-
+  /// Full-bleed photo banner with a dark gradient fade at the bottom so
+  /// the app name text stays readable over any photo.
   Widget _buildPhotoBanner() {
     return SizedBox(
       height: 260,
